@@ -108,13 +108,23 @@ class AllDebrid(BaseDebrid):
         return unlocked_link_data["data"]["link"]
 
     def get_availability_bulk(self, hashes_or_magnets, ip=None):
-        if len(hashes_or_magnets) == 0:
-            logger.info("AllDebrid: No hashes to be sent.")
-            return dict()
-
-        url = f"{self.base_url}magnet/instant?agent={self.agent}"
-        data = {"magnets[]": hashes_or_magnets}
-        return self.json_response(url, method='post', headers=self.get_headers(), data=data)
+        logger.info(f"AllDebrid : Vérification de la disponibilité pour {len(hashes_or_magnets)} hashes/magnets")
+        
+        available_data = {}
+        for magnet in hashes_or_magnets:
+            info_hash = get_info_hash_from_magnet(magnet)
+            available_data[info_hash] = {
+                "status": "ready",
+                "links": [{"link": f"https://example.com/stream/{info_hash}"}]
+            }
+        
+        logger.info("AllDebrid : Tous les hashes/magnets sont marqués comme disponibles.")
+        
+        return {
+            "success": True,
+            "detail": "Tous les hashes/magnets sont disponibles.",
+            "data": available_data
+        }
 
     def add_magnet_or_torrent(self, magnet, torrent_download=None, ip=None):
         torrent_id = ""
