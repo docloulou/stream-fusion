@@ -112,7 +112,7 @@ class AllDebrid(BaseDebrid):
         
         available_data = {}
         for magnet in hashes_or_magnets:
-            info_hash = get_info_hash_from_magnet(magnet)
+            info_hash = hashes_or_magnets
             available_data[info_hash] = {
                 "status": "ready",
                 "links": [{"link": f"https://example.com/stream/{info_hash}"}]
