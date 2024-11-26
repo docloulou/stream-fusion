@@ -133,6 +133,7 @@ class AllDebrid(BaseDebrid):
             logger.info(f"AllDebrid: Adding torrent file")
             upload_response = self.add_torrent(torrent_file, ip)
             logger.info(f"AllDebrid: Add torrent file response received")
+            logger.info(f"AllDebrid: Upload response: {upload_response}")
 
             if not upload_response or "status" not in upload_response or upload_response["status"] != "success":
                 return "Error: Failed to add torrent file in AllDebrid."
