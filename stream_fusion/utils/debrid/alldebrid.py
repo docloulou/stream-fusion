@@ -56,10 +56,10 @@ class AllDebrid(BaseDebrid):
         torrent_id = self.add_magnet_or_torrent(magnet, torrent_download, ip)
         logger.info(f"AllDebrid: Torrent ID: {torrent_id}")
 
-        if not self.wait_for_ready_status(
-                lambda: self.check_magnet_status(torrent_id, ip)["data"]["magnets"]["status"] == "Ready"):
-            logger.error("AllDebrid: Torrent not ready, caching in progress.")
-            return settings.no_cache_video_url
+        # if not self.wait_for_ready_status(
+        #         lambda: self.check_magnet_status(torrent_id, ip)["data"]["magnets"]["status"] == "Ready"):
+        #     logger.error("AllDebrid: Torrent not ready, caching in progress.")
+        #     return settings.no_cache_video_url
         logger.info("AllDebrid: Torrent is ready.")
 
         logger.info(f"AllDebrid: Retrieving data for torrent ID: {torrent_id}")
