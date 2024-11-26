@@ -64,6 +64,8 @@ class AllDebrid(BaseDebrid):
 
         logger.info(f"AllDebrid: Retrieving data for torrent ID: {torrent_id}")
         data = self.check_magnet_status(torrent_id, ip)["data"]
+        logger.debug(f"AllDebrid: Raw data: {data}")
+
         logger.info(f"AllDebrid: Data retrieved for torrent ID")
 
         link = settings.no_cache_video_url

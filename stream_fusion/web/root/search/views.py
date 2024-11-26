@@ -288,7 +288,6 @@ async def get_results(
                 hashes = torrent_smart_container.get_unaviable_hashes()
                 ip = request.client.host
                 result = debrid.get_availability_bulk(hashes, ip)
-                logger.info(f"AllDebrid: Upload response: {result}")
                 if result:
                     torrent_smart_container.update_availability(
                         result, type(debrid), media
